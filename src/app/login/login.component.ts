@@ -32,4 +32,12 @@ export class LoginComponent implements OnInit {
 
     }
 
+    onChangeEmail(change) {
+      console.log(change);
+    }
+
+    onChangePassword(change) {
+      console.log(change);
+    }
+
 }

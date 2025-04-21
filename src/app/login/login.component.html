@@ -8,12 +8,13 @@
           type="email" 
           name="email" 
           ngModel 
+          (ngModelChange)="onChangeEmail($event)"
           #email="ngModel" 
           required email minlength="3" maxlength="28"
           placeholder="Email"   
         >
 
-        <mat-error *ngIf="email?.errors.required">The email is madatory.</mat-error>
+        <mat-error *ngIf="email.errors?.required">The email is madatory.</mat-error>
 
         <mat-error *ngIf="email.errors?.minlength">
           Your email must have minimum {{email.errors?.minlength.requiredLength}} chars,
@@ -30,21 +31,23 @@
           type="password" 
           name="password" 
           ngModel 
+          (ngModelChange)="onChangePassword($event)"
           #password="ngModel" 
           placeholder="Password"
         >
 
-        <mat-error *ngIf="password?.errors?.required">The password is madatory.</mat-error>
+        <mat-error *ngIf="password.errors?.required">The password is madatory.</mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" >Login</button>
     </form>
 
     <div class="form-val">
       <!-- {{loginForm.value | json}} -->
        <!-- {{email.value + ' ' + password.value}} -->
         <!-- {{email.valid}} -->
-         {{email.errors| json}}
+         <!-- {{email.errors| json}} -->
+          {{email.value | json}}
     </div>
   </mat-card-content>
 </mat-card>
