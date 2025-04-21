@@ -31,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginReactiveComponent
+    // component: LoginReactiveComponent
+    component: LoginComponent
   },
   {
     path: '**',
