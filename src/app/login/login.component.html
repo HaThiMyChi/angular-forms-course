@@ -7,9 +7,9 @@
           matInput 
           type="email" 
           name="email" 
-          ngModel 
-          [ngModelOptions]="{standalone:true}"
+          [(ngModel)]="val.email"
           (ngModelChange)="onChangeEmail($event)"
+          [ngModelOptions]="{standalone:true}"
           #email="ngModel" 
           required email minlength="3" maxlength="28"
           placeholder="Email"   
@@ -31,7 +31,7 @@
           matInput 
           type="password" 
           name="password" 
-          ngModel 
+          [(ngModel)]="val.password"
           (ngModelChange)="onChangePassword($event)"
           #password="ngModel" 
           placeholder="Password"
