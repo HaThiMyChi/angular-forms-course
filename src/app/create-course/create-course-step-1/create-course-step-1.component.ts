@@ -19,11 +19,15 @@ interface CourseCategory {
 export class CreateCourseStep1Component implements OnInit {
 
   form = this.fb.group({
-    title: ['', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(60)
-    ]]
+    title: ['', {
+        validators: [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(60)
+        ],
+        asyncValidators: [courseTitleValidator],
+        updateOn: 'blur'
+    }]
   });
 
   constructor(private fb: FormBuilder) {
@@ -31,5 +35,9 @@ export class CreateCourseStep1Component implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  get courseTitle() {
+    return this.form.controls['title'];
   }
 }
