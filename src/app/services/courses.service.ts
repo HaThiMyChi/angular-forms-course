@@ -27,7 +27,7 @@ export class CoursesService {
     }
 
     findAllCourses(): Observable<Course[]> {
-        return this.http.get('/api/courses')
+        return this.http.get('http://localhost:9000/api/courses')
             .pipe(
                 map(res => res['payload'])
             );
