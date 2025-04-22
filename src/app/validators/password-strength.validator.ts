@@ -1,9 +1,7 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
-
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function createPasswordStrengthValidator(): ValidatorFn {
-    return (control:AbstractControl) : ValidationErrors | null => {
-
+    return (control: AbstractControl) : ValidationErrors | null => {
         const value = control.value;
 
         if (!value) {
@@ -17,7 +15,7 @@ export function createPasswordStrengthValidator(): ValidatorFn {
         const hasNumeric = /[0-9]+/.test(value);
 
         const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
-
-        return !passwordValid ? {passwordStrength:true}: null;
+        return !passwordValid ? {passwordStrength: true} : null;
+        
     }
 }
