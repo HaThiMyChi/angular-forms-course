@@ -8,7 +8,7 @@
           type="email" 
           name="email" 
           ngModel 
-          [ngModelOptions]="{updateOn: 'submit'}"
+          [ngModelOptions]="{standalone:true}"
           (ngModelChange)="onChangeEmail($event)"
           #email="ngModel" 
           required email minlength="3" maxlength="28"
