@@ -36,9 +36,16 @@
           #password="ngModel" 
           placeholder="Password"
           passwordStrength
+          minlength="8"
         >
 
         <mat-error *ngIf="password.errors?.required">The password is madatory.</mat-error>
+
+        <mat-error *ngIf="password.errors?.minlength">
+          Your password must have minimum {{password.errors?.minlength.requiredLength}} chars,
+          but it only has {{password.errors?.minlength.actualLength}}.
+        </mat-error>
+
         <mat-error *ngIf="password.errors?.passwordStrength">
           Your password must have lower case, upper case and numeric characters.
         </mat-error>
