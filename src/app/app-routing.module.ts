@@ -35,6 +35,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'login-reactive',
+    component: LoginReactiveComponent
+  },
+  {
     path: '**',
     redirectTo: '/'
   }

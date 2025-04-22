@@ -11,13 +11,15 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
 })
 export class LoginReactiveComponent implements OnInit {
 
-   form = this.fb.group({
-      email: ["", {
-        validators: [Validators.required, Validators.email],
-        updateOn: 'blur'}],
-      password: ['', [Validators.required, Validators.minLength(8),
-                        createPasswordStrengthValidator()]]
-   });
+  // updateOn is blue cap nhap model thi phan tu mat focus
+
+  form = this.fb.group({
+    email: ["", {
+      validators: [Validators.required, Validators.email],
+      updateOn: 'blur'}],
+    password: ['', [Validators.required, Validators.minLength(8),
+      createPasswordStrengthValidator()]]
+  });
 
   constructor(private fb: NonNullableFormBuilder) {
 
@@ -29,11 +31,11 @@ export class LoginReactiveComponent implements OnInit {
   }
 
   get email() {
-      return this.form.controls['email'];
+    return this.form.controls['email'];
   }
 
   get password() {
-      return this.form.controls['password'];
+    return this.form.controls['password'];
   }
 
   login() {
@@ -44,8 +46,8 @@ export class LoginReactiveComponent implements OnInit {
     this.form.reset();
 
     console.log(this.form.value);
-
   }
+
 }
 
 
