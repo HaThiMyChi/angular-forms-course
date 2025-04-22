@@ -35,9 +35,13 @@
           (ngModelChange)="onChangePassword($event)"
           #password="ngModel" 
           placeholder="Password"
+          passwordStrength
         >
 
         <mat-error *ngIf="password.errors?.required">The password is madatory.</mat-error>
+        <mat-error *ngIf="password.errors?.passwordStrength">
+          Your password must have lower case, upper case and numeric characters.
+        </mat-error>
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" >Login</button>
