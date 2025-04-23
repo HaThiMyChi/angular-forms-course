@@ -28,6 +28,7 @@ export class FileUploadComponent {
     @Input() requiredFileType:string;
 
     fileName = '';
+    fileUploadError = false;
 
     constructor(private http: HttpClient) {
 
@@ -35,9 +36,24 @@ export class FileUploadComponent {
 
     onFileSelected(event) {
         const file: File = event.target.files[0];
+        console.log('file', file)
         if (file) {
             this.fileName = file.name;
-            console.log(this.fileName);
+            // console.log(this.fileName);
+
+            const formData = new FormData();
+            formData.append("thumbnail", file);
+     
+            this.fileUploadError = false;
+
+            this.http.post("http://localhost:9000/api/thumbnail-upload", formData)
+                .pipe(
+                    catchError(error => {
+                        this.fileUploadError = true;
+                        return of(error)
+                    })
+                )
+                .subscribe();
         }
         
     }
