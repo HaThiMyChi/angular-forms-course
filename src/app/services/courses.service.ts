@@ -20,7 +20,7 @@ export class CoursesService {
     }
 
     findCourseCategories() {
-      return this.http.get(`/api/course-categories`)
+      return this.http.get(`http://localhost:9000/api/course-categories`)
         .pipe(
           map(res => res["categories"])
         );
