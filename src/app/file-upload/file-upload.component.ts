@@ -32,6 +32,15 @@ export class FileUploadComponent {
     constructor(private http: HttpClient) {
 
     }
+
+    onFileSelected(event) {
+        const file: File = event.target.files[0];
+        if (file) {
+            this.fileName = file.name;
+            console.log(this.fileName);
+        }
+        
+    }
 }
 
 
