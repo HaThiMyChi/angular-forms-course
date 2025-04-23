@@ -12,7 +12,13 @@ import {createPromoRangeValidator} from '../../validators/date-range.validator';
 export class CreateCourseStep2Component implements OnInit {
 
     form = this.fb.group({
-        courseType: ['premium', Validators.required]
+        courseType: ['premium', Validators.required],
+        price: [null, [
+            Validators.required,
+            Validators.min(1),
+            Validators.max(9999),
+            Validators.pattern("[0-9]+")
+        ]]
     });
 
     constructor(private fb: FormBuilder) {
@@ -20,7 +26,15 @@ export class CreateCourseStep2Component implements OnInit {
     }
 
   ngOnInit() {
+    this.form.valueChanges.subscribe(val => {
+        const priceControl = this.form.controls["price"];
 
+        if (val.courseType == 'free' && priceControl.enable) {
+            priceControl.disable({emitEvent: false});
+        } else if (val.courseType == 'premium' && priceControl.disable) {
+            priceControl.enable({emitEvent: false});
+        }
+    })
   }
 
 }
