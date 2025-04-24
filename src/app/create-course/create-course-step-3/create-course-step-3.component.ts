@@ -19,8 +19,21 @@ export class CreateCourseStep3Component {
 
     }
 
+    get lessons() {
+        return this.form.controls["lessons"] as FormArray;
+    }
+
     addLesson() {
-        
+        const lessonForm = this.fb.group({
+            title: ['', Validators.required],
+            level: ['beginner', Validators.required]
+        })
+
+        this.lessons.push(lessonForm);
+    }
+
+    deleteLesson(lessonIndex: number) {
+        this.lessons.removeAt(lessonIndex);
     }
 
     
