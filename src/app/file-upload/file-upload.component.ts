@@ -23,13 +23,17 @@ import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR,
     ],
     standalone: false
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements ControlValueAccessor{
 
     @Input() requiredFileType:string;
 
     fileName = '';
     fileUploadError = false;
     uploadProgress: number;
+
+    onChange = (fileName: string) => {};
+    onTouched = () => {};
+    disabled: boolean = false;
 
     constructor(private http: HttpClient) {
 
@@ -63,10 +67,33 @@ export class FileUploadComponent {
             .subscribe(event => {
                 if (event.type == HttpEventType.UploadProgress) {
                     this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+                } else if (event.type == HttpEventType.Response) {
+                    this.onChange(this.fileName);
                 }
             });
         }
         
+    }
+
+    onClick(fileUpload: HTMLInputElement) {
+        this.onTouched();
+        fileUpload.click();
+    }
+
+    writeValue(value: any) {
+        this.fileName = value;
+    }
+
+    registerOnChange(onChange: any) {
+        this.onChange = onChange;
+    }
+
+    registerOnTouched(onTouched: any) {
+        this.onTouched = onTouched;
+    }
+
+    setDisabledState(disabled: boolean) {
+        this.disabled = disabled;
     }
 }
 
